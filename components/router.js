@@ -1,31 +1,14 @@
 var router = require('express').Router();
-var validator = require('../controllers/input_validator')
-var tickets = require('../controllers/tickets');
-var users = require('../controllers/users');
+var input_validator = require('../controllers/input_validator');
+var access_validator = require('../controllers/access_validator');
+var teams = require('../controllers/teams');
 
 router.get('/', function(req, res, next) {
-	res.send('Welcome to Local Helper');
+	res.status(200).send({status:200, more_info:{message:'Welcome to LocalHelper'}});
 	return next();
 });
 
-//User Calls
-router.get('/users/:id', validator.users_retrieve, users.retrieve);
-router.post('/users', validator.users_register, users.register);
-
-//Ticket Calls
-router.get('/tickets/:id', function(req, res, next) {
-	res.send('Get Ticket Details');
-	return next();
-});
-
-router.get('/tickets', function(req, res, next) {
-	res.send('Search for tickets');
-	return next();
-});
-
-router.post('/tickets', function(req, res, next) {
-	res.send('Create ticket');
-	return next();
-});
+router.get('/teams', access_validator.access_validate, team.getAllTeams);
+router.get('/teams/:id', access_validator.access_validate, team.getTeam);
 
 module.exports = router;

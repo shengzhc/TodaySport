@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var ticket_schema = mongoose.Schema({
+var team = mongoose.Schema({
 	create_by : mongoose.Schema.Types.ObjectId,
 	create_date : {type: Date, default: Date.now},
 	update_date : Date,
@@ -8,10 +8,10 @@ var ticket_schema = mongoose.Schema({
 	category : [String],
 	comments : [{}],
 	requests : [{user_id: mongoose.Schema.Types.ObjectId, request_date: Date, message: String}]
-});
+}, {collection:'tickets'});
 
-ticket_schema.methods.test = function() {
+team.methods.test = function() {
 	global.logger.info('this is a ticket schema test');
 }
 
-module.exports = ticket_schema;
+module.exports = team;
