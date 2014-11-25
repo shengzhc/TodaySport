@@ -1,17 +1,21 @@
 var mongoose = require('mongoose');
 
 var team = mongoose.Schema({
-	create_by : mongoose.Schema.Types.ObjectId,
+	team_id : {type: String, required: true, unique: true},
+	abbreviation : {type: String, required: true},
+	active : {type: Boolean, default: true},
+	last_name : String,
+	division : String,
+	site_name : String,
+	city : String,
+	state : String,
+	full_name : String,
 	create_date : {type: Date, default: Date.now},
-	update_date : Date,
-	detail : {start_time: Date, end_time: Date, location: String, description: String},
-	category : [String],
-	comments : [{}],
-	requests : [{user_id: mongoose.Schema.Types.ObjectId, request_date: Date, message: String}]
-}, {collection:'tickets'});
+	update_date : {type: Date, default: Date.now}
+	details : {}
+}, {collection:'teams'});
 
-team.methods.test = function() {
-	global.logger.info('this is a ticket schema test');
-}
+
+team.static.method
 
 module.exports = team;

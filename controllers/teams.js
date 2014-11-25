@@ -7,5 +7,4 @@ exports.getAllTeams = function(req, res, next) {
 }
 
 exports.getTeam = function(req, res, next) {
-
 }
