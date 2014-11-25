@@ -6,7 +6,6 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var mongodb = require('./components/mongodb');
-var session = require('express-session');
 
 global.logger = new (winston.Logger)({
 	transports:[
@@ -30,7 +29,6 @@ morgan.token('lp_startTime', function(req, res) {
 	return req.lp_startTime;
 });
 
-app.use(session({secret: '_local_helper', resave:true, saveUninitialized:true}));
 app.use(function(req, res, next) {
 	req.lp_startTime = new Date();
 	next();

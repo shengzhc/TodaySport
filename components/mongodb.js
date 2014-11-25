@@ -11,7 +11,7 @@ function registerSchemas(db) {
 }
 
 mongodb.connect = function(callback) {
-	var connection = mongoose.createConnection('localhost', 'localhelper', 27017);
+	var connection = mongoose.createConnection('localhost', 'todaysport', 27017);
 	connection.on('error', function(err) {
 		global.logger.error(err.toString());
 		callback(err, null);

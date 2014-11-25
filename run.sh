@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#shell script to help run LocalHelper
+#shell script to help run TodaySport
 
 osascript -e 'tell application "Terminal" to do script "mongod"'
 npm install

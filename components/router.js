@@ -1,14 +1,14 @@
 var router = require('express').Router();
-var input_validator = require('../controllers/input_validator');
-var access_validator = require('../controllers/access_validator');
-var teams = require('../controllers/teams');
+var inputValidator = require('../controllers/InputValidator');
+var accessValidator = require('../controllers/AccessValidator');
+var teamController = require('../controllers/TeamController');
 
 router.get('/', function(req, res, next) {
-	res.status(200).send({status:200, more_info:{message:'Welcome to LocalHelper'}});
+	res.status(200).send({status:200, more_info:{message:'Welcome to TodaySport Center'}});
 	return next();
 });
 
-router.get('/teams', access_validator.access_validate, team.getAllTeams);
-router.get('/teams/:id', access_validator.access_validate, team.getTeam);
+router.get('/teams', accessValidator.getAllTeams, inputValidator.getAllTeams, teamController.getAllTeams);
+router.get('/teams/:id', accessValidator.getTeam, inputValidator.getTeam, teamController.getTeam);
 
 module.exports = router;
