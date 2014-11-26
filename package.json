@@ -28,6 +28,7 @@
     "request": "^*",
     "should": "^4.2.1",
     "supertest": "^0.14.0",
-    "winston": "*"
+    "winston": "*",
+    "cron": "*"
   }
 }
