@@ -1,3 +1,4 @@
+var async = require('async');
 var mongoose = require('mongoose');
 
 var teamModel = mongoose.Schema({
@@ -26,6 +27,18 @@ teamModel.statics.findByTeamId =function(teamId, callback) {
 	this.findOne({abbreviation:teamId.toUpperCase()}, function(err, doc) {
 			if (err) return callback(err, null);
 			return callback(null, doc);
+	});
+};
+
+teamModel.statics.upinsertAllTeams = function(teams, callback) {
+	var model = this;
+	async.each(teams, function(team, cb) {
+		team.update_date = new Date();
+		model.update({team_id: team.team_id}, team, {upsert: true}, function(err) {
+			return cb(err);
+		});
+	}, function(err) {
+		return callback(err);
 	});
 };
 
